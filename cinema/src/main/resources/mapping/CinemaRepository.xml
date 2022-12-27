@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.southwind.repository.CinemaRepository">
+
+    <select id="findAll" resultType="Cinema">
+        select * from t_cinema order by id limit #{param1},#{param2}
+    </select>
+
+    <select id="findById" parameterType="long" resultType="Cinema">
+        select * from t_cinema where id = #{id}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from t_cinema;
+    </select>
+
+
+
+    <update id="update" parameterType="Cinema">
+        update t_cinema set username = #{username},password = #{password},cinemaName = #{cinemaName},picture = #{picture},amount = #{amount},telephone = #{telephone},address = #{address},description = #{description} where id = #{id}
+    </update>
+
+    <insert id="save" parameterType="Cinema">
+        insert into t_cinema(username,password,cinemaName,picture,amount,telephone,address,description) values(#{username},#{password},#{cinemaName},#{picture},#{amount},#{telephone},#{address},#{description})
+    </insert>
+
+    <delete id="deleteById" parameterType="long">
+        delete from t_cinema where id = #{id}
+    </delete>
+
+</mapper>

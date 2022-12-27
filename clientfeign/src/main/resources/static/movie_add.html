@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+</head>
+<body>
+<div class="layui-container" style="margin-top: 50px;">
+
+    <div class="layui-container" style="width: 500px;height: 330px;padding-top: 60px;">
+        <form class="layui-form" action="/movie/save" method="post">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">电影名称：</label>
+                <div class="layui-inline">
+                    <input type="text" name="movieName"  lay-verify="required" autocomplete="off" placeholder="请输入电影名称" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">海报：</label>
+                <div class="layui-inline">
+                    <input type="text" name="picture" lay-verify="required" autocomplete="off" placeholder="请输入海报" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">电影类型：</label>
+                <div class="layui-inline">
+                    <input type="text" name="sort"  lay-verify="required" autocomplete="off" placeholder="请输入电影类型" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">导演：</label>
+                <div class="layui-inline">
+                    <input type="text" name="director" lay-verify="required" autocomplete="off" placeholder="请输入导演" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上映日期：</label>
+                <div class="layui-inline">
+                    <input type="text" name="releaseDate" lay-verify="required" autocomplete="off" placeholder="请输入上映日期" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">片长：</label>
+                <div class="layui-inline">
+                    <input type="text" name="length"  lay-verify="required" autocomplete="off" placeholder="请输入片长" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">预告：</label>
+                <div class="layui-inline">
+                    <input type="text" name="preview" lay-verify="required" placeholder="请输入预告" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">电影院描述：</label>
+                <div class="layui-inline">
+                    <input type="text" name="description" lay-verify="required" placeholder="请输入描述" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">场次：</label>
+                <div class="layui-inline">
+                    <input type="text" name="session"  lay-verify="required" autocomplete="off" placeholder="请输入场次" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">影厅号：</label>
+                <div class="layui-inline">
+                    <input type="text" name="no" lay-verify="required" autocomplete="off" placeholder="请输入影厅号" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">电影院账号：</label>
+                <div class="layui-inline">
+                    <input type="text" name="cinemaAccount"  lay-verify="required" autocomplete="off" placeholder="请输入电影院账号" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">电影院名称：</label>
+                <div class="layui-inline">
+                    <input type="text" name="cinemaName"  lay-verify="required" autocomplete="off" placeholder="请输入电影院名称" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">价格：</label>
+                <div class="layui-inline">
+                    <input type="text" name="price"  lay-verify="required" autocomplete="off" placeholder="请输入价格" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">座位总数：</label>
+                <div class="layui-inline">
+                    <input type="text" name="numberOfSeat"  lay-verify="required" autocomplete="off" placeholder="请输入座位总数" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">座位余数：</label>
+                <div class="layui-inline">
+                    <input type="text" name="numberOfAvail"  lay-verify="required" placeholder="请输入座位余数" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">已选座位号：</label>
+                <div class="layui-inline">
+                    <input type="text" name="selected" lay-verify="required" placeholder="请输入已选座位号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <button class="layui-btn" lay-submit="" lay-filter="demo2" style="margin-left: 160px;">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'element'], function(){
+        var form = layui.form;
+        var element = layui.element;
+
+        //自定义验证规则
+        form.verify({
+            telephone: [/^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/, "请输入正确的联系方式"]
+        });
+
+    });
+</script>
+</body>
+</html>

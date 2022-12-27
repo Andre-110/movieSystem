@@ -1,0 +1,16 @@
+
+server:
+  port: 8761
+eureka:
+  client:
+    # 是否将自身注册到注册中中心
+    register-with-eureka: false
+    # 是否从Eureka获取注册信息
+    fetch-registry: false
+    # 设置与Eureka Server交互地址，多个地址使用英文逗号分隔
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka/
+    server:
+      enable-self-preservation: false
+  instance:
+    hostname: localhost

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#menu_manage").click(function(){
+                $("iframe").attr("src","/account/redirect/menu_manage");
+            });
+            $("#user_info").click(function(){
+                $("iframe").attr("src","/menu/redirect/user_info");
+            });
+            $("#order_handler").click(function(){
+                $("iframe").attr("src","/menu/redirect/order_handler");
+            });
+            $("#buy").click(function(){
+                $("iframe").attr("src","/menu/redirect/buy");
+            });
+            $("#user_add").click(function(){
+                $("iframe").attr("src","/menu/redirect/user_add");
+            });
+            $("#user_update_password").click(function(){
+                $("iframe").attr("src","/menu/redirect/user_update_password");
+            });
+            $("#cinema_manage").click(function(){
+                $("iframe").attr("src","/menu/redirect/cinema_manage");
+            });
+            $("#movie_manage").click(function(){
+                $("iframe").attr("src","/menu/redirect/movie_info");
+            });
+            $("#my_order").click(function(){
+                $("iframe").attr("src","/menu/redirect/my_order");
+            });
+            $("#movie_order").click(function(){
+                $("iframe").attr("src","/menu/redirect/movie_order");
+            });
+        })
+    </script>
+</head>
+
+<div class="layui-layout layui-layout-admin">
+    <body class="layui-layout-body">
+    <!-- 顶部菜单开始 -->
+    <div class="layui-header">
+        <div class="layui-logo">电影院购票系统</div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img th:src="@{/images/img.jpeg}" class="layui-nav-img">
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/account/logout">退出系统</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 顶部菜单结束 -->
+
+    <!-- 左侧菜单开始 -->
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+
+
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">电影院</a>
+                    <dl class="layui-nav-child">
+                        <dd><a id="cinema_manage" href="javascript:void(0)">电影院信息</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">电影</a>
+                    <dl class="layui-nav-child">
+                        <dd class="layui-this"><a id="movie_manage" href="javascript:void(0)">电影信息</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">购票</a>
+                    <dl class="layui-nav-child">
+                        <dd><a id="buy" href="javascript:void(0)">购票中心</a></dd>
+                        <dd><a id="my_order" href="javascript:void(0)">我的订单</a></dd>
+<!--                        <dd><a id="movie_order" href="javascript:void(0)">电影对应座位</a></dd>-->
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">个人中心</a>
+                    <dl class="layui-nav-child">
+                        <dd><a id="user_info" href="javascript:void(0)">个人信息</a></dd>
+                        <dd><a id="user_change_password" href="javascript:void(0)">修改密码</a></dd>
+                    </dl>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+    <!-- 左侧菜单结束 -->
+
+    <!-- 主体开始 -->
+    <div class="layui-body">
+
+        <iframe src="/menu/redirect/menu_manage" style="width: 100%;height: 100%;border: 0px"></iframe>
+
+    </div>
+    <!-- 主体结束 -->
+
+    <!-- 底部开始 -->
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        @Web&Soa
+    </div>
+    <!-- 底部结束 -->
+</div>
+<script>
+    //二级菜单联动
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>
+

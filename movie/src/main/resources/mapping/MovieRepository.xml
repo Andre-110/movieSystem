@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.southwind.repository.MovieRepository">
+
+    <select id="findAll" resultType="Movie">
+        select * from t_movie order by id limit #{param1},#{param2}
+    </select>
+
+    <select id="findById" parameterType="long" resultType="Movie">
+        select * from t_movie where id = #{id}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from t_movie;
+    </select>
+
+<!--    // id  movieName picture sort director role releaseDate length preview description session no cinemaAccount cinemaName price numberOfSeat numberOfAvail selected-->
+
+    <update id="update" parameterType="Movie">
+        update t_movie set movieName = #{movieName},picture = #{picture},sort = #{sort},director = #{director},role = #{role},releaseDate = #{releaseDate},length = #{length},preview = #{preview},
+                           description = #{description},session = #{session},no = #{no},cinemaAccount = #{cinemaAccount},cinemaName = #{cinemaName},price = #{price},numberOfSeat = #{numberOfSeat},numberOfAvail = #{numberOfAvail},selected = #{selected} where id = #{id}
+    </update>
+
+    <insert id="save" parameterType="Movie">
+        insert into t_movie(movieName,picture,sort,director,role,releaseDate,length,preview,description,session,no,cinemaAccount,cinemaName,price,numberOfSeat,numberOfAvail,selected) values
+                          (#{movieName},#{picture},#{sort},#{director},#{role},#{releaseDate},#{length},#{preview},#{description},#{session},#{no},#{cinemaAccount},#{cinemaName},#{price},#{numberOfSeat},#{numberOfAvail},#{selected})
+    </insert>
+
+    <delete id="deleteById" parameterType="long">
+        delete from t_movie where id = #{id}
+    </delete>
+
+</mapper>

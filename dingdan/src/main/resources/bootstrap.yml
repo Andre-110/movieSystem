@@ -1,0 +1,29 @@
+server:
+  port: 8010
+spring:
+  druid:
+    # 超过时间限制是否回收
+    remove-abandoned: true
+    # 超时时间；单位为秒。180秒=3分钟
+    remove-abandoned-timeout: 180
+    # 关闭abanded连接时输出错误日志
+    log-abandoned: true
+  application:
+    name: dingdan
+  datasource:
+    username: root
+    password: 20020110.lq
+    url: jdbc:mysql://localhost:3306/soa?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+  server:
+    enable-self-preservation: false
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.southwind.entity

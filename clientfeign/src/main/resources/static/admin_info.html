@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+</head>
+<body>
+<div class="layui-container" style="width: 960px;height: 600px;margin-top: 0px;padding-top: 60px;">
+
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+    <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+    <script>
+        layui.use('table', function(){
+            var table = layui.table;
+
+            table.render({
+                elem: '#test'
+                ,url:'/user/findAdminById'
+                ,title: '个人信息'
+                ,cols: [
+                    [
+                        {
+                            field: 'id', width: 80, title: '编号', templet: function (data) {
+                                return data.id
+                            }
+                        },
+                         {
+                        field: 'username', width: 120, title: '用户名', templet: function (data) {
+                            return data.username
+                        }
+                    }
+
+
+                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:90}
+                    ]
+                ]
+                ,page: true
+            });
+
+            //监听行工具事件
+            table.on('tool(test)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'send'){
+                    window.location.href="/order/updateState/"+data.id+"/1";
+                }
+            });
+        });
+    </script>
+
+</div>
+<script>
+    //二级菜单联动
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>

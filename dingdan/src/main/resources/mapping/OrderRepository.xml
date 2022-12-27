@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.southwind.repository.OrderRepository">
+
+
+	<resultMap id="orderMap" type="Order">
+		<id column="id" property="id"></id>
+		<result column="addtime" property="addtime"></result>
+		<result column="status" property="status"></result>
+		<association property="movie" select="com.southwind.repository.MovieRepository.findById" column="movieId"></association>
+		<association property="user" select="com.southwind.repository.UserRepository.findById" column="userid"></association>
+	</resultMap>
+
+	<insert id="save" parameterType="Order">
+		insert into t_order(userId,movieId,addtime,price,address,movieName,status) values(#{user.id},#{movie.id},#{addtime},#{movie.price},#{address},#{movie.movieName},0)
+	</insert>
+
+	<select id="findAll" resultMap="orderMap">
+		select id,userId,movieId,addtime,status,address from t_order limit #{param1},#{param2}
+	</select>
+
+	<select id="findAllByUid" resultMap="orderMap">
+		select * from t_order where userId = #{param3} limit #{param1},#{param2}
+	</select>
+
+	<select id="findAllByMid" resultMap="orderMap">
+		select address from t_order where movieId = #{param3}
+	</select>
+
+	<select id="countByUid" parameterType="long" resultType="int">
+		select count(*) from t_order where userId = #{uid}
+	</select>
+
+	<select id="countByMid" parameterType="long" resultType="int">
+		select count(*) from t_order where movieId = #{mid}
+	</select>
+
+
+<!--	<update id="updateState" parameterType="long">-->
+<!--		update order set state = 1 where id = #{id}-->
+<!--	</update>-->
+
+	<select id="count" resultType="int">
+		select count(*) from t_order
+	</select>
+
+
+
+
+
+
+
+
+
+<!--	<delete id="deleteByMid" parameterType="long">-->
+<!--		delete from order where mid = #{mid}-->
+<!--	</delete>-->
+
+<!--	<delete id="deleteByUid" parameterType="long">-->
+<!--		delete from order where uid = #{uid}-->
+<!--	</delete>-->
+
+<!--	<select id="countByState" parameterType="int" resultType="int">-->
+<!--		select count(*) from order where state = #{state}-->
+<!--	</select>-->
+
+
+
+
+
+</mapper>
+

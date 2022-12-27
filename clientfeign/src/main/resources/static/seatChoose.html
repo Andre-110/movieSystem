@@ -1,0 +1,921 @@
+
+<!-- 首页 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>首页</title>
+	<link rel="stylesheet" href="../../layui/css/layui.css">
+	<!-- 样式 -->
+	<link rel="stylesheet" href="../../css/style.css" />
+	<!-- 主题（主要颜色设置） -->
+	<link rel="stylesheet" href="../../css/theme.css" />
+	<!-- 通用的css -->
+	<link rel="stylesheet" href="../../css/common.css" />
+
+</head>
+<style>
+	html::after {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		content: '';
+		display: block;
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: center;
+		z-index: -1;
+	}
+	.table{
+		display: table;
+		border-collapse: collapse;
+		width: 400px;
+		height: 200px;
+	}
+	.tr{
+		display: table-row;
+		height: 100px;
+	}
+	.td{
+		display: table-cell;
+		width: 100px;
+		text-align: center;
+		vertical-align: middle;
+		border: solid 1px red;
+		table-layout: fixed;
+	}
+	.table .td img{
+		width: 100px;
+		height: 100px;
+		display:block;
+	}
+	#swiper {
+		overflow: hidden;
+	}
+	#swiper .layui-carousel-ind li {
+		width: 16px;
+		height: 10px;
+		border-width: 0;
+		border-style: solid;
+		border-color: rgba(0,0,0,.3);
+		border-radius: 3px;
+		background-color: #f7f7f7;
+		box-shadow: 0 0 6px rgba(255,0,0,.8);
+	}
+	#swiper .layui-carousel-ind li.layui-this {
+		width: 24px;
+		height: 10px;
+		border-width: 0;
+		border-style: solid;
+		border-color: rgba(0,0,0,.3);
+		border-radius: 0;
+		background-color: red;
+		box-shadow: 0 0 6px rgba(255,0,0,.8);
+	}
+
+	input#buynumber::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; }
+	input#buynumber[type="number"]{ -moz-appearance: textfield; }
+
+	.message-container {width: 100%}
+
+	.jsonObj-tab .layui-tab-card>.layui-tab-title .layui-this {
+		background-color: rgba(96, 125, 139, 1);
+		color: #fff;
+		font-size: 14px;
+	}
+
+.data-jsonObj {
+padding-bottom: 20px;
+}
+
+.data-jsonObj .layui-breadcrumb a.first {
+color: rgba(255, 255, 255, 1) !important;
+}
+	.rect{
+
+		width:200px; //给200像素的宽
+
+	height:200px; //给200像素的高
+
+	border:1px solid #000; //给一个边框 颜色为黑色
+
+	background:transparent; // 给这个盒子一个透明的背景色
+
+	}
+
+	#round {
+		padding:10px; width:1200px; height:200px;
+		border: 5px solid #dedede;
+		-moz-border-radius: 15px;      /* Gecko browsers */
+		-webkit-border-radius: 15px;   /* Webkit browsers */
+		border-radius:15px;            /* W3C syntax */
+	}
+
+
+</style>
+<body>
+
+
+	<div id="app">
+
+		<div class="data-jsonObj" style="padding:0">
+			<div class="data-jsonObj-breadcrumb" :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.3)","margin":"20px auto","borderColor":"rgba(149, 221, 255, 1)","backgroundColor":"rgba(96, 125, 139, 1)","borderRadius":"4px","borderWidth":"5px","borderStyle":"solid ","height":"54px"}'>
+				<span class="layui-breadcrumb">
+					<a class="first" :style='{"padding":"8px 10px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0 5px","borderColor":"rgba(255,0,0,.3)","backgroundColor":"rgba(255, 255, 255, 0.01)","color":"rgba(255, 255, 255, 1)","borderRadius":"0","borderWidth":"0","fontSize":"16px","borderStyle":"solid"}' href="../home/home.html">首页</a>
+					<a><cite :style='{"padding":"8px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","margin":"0 15px","borderColor":"rgba(255,0,0,.3)","backgroundColor":"rgba(255, 255, 255, 0)","color":"rgba(255, 255, 255, 1)","borderRadius":"4px","borderWidth":"0","fontSize":"16px","borderStyle":"solid"}'>{{title}}</cite></a>
+				</span>
+				
+			</div>
+		</div>	
+		<div class="data-jsonObj" style="padding:0;width:100%;" :style='{"padding":"0","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","background":"#fff","borderStyle":"solid"}'>
+			<div class="layui-row" style="display: flex;width:980px;margin: 0 auto;">
+				<div class="layui-col-md5" style="width:400px" >
+					<div class="layui-carousel" id="swiper" :style='{"boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 auto","borderColor":"rgba(0,0,0,.3)","borderRadius":"4px","borderWidth":"0","width":"400px","borderStyle":"solid","height":"400px"}'>
+						  <img src="../../images/movie_picture1.jpg" :style='{
+    "width": "100%",
+    "height": "100%",}'>
+					</div>
+
+
+
+				</div>
+				<div class="layui-col-md7" style="padding-left: 20px;flex: 1;" :style='{"padding":"0","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0 0 0 20px","borderColor":"rgba(67, 162, 205, 0.65)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"5px","borderStyle":"solid"}'>
+					<h1 style="position: relative;" :style='{"padding":"10px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"0","fontSize":"16px","borderStyle":"solid"}' class="title">{{title}}</h1>
+					
+
+
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'  class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>价格：</span>
+						<span :style='{"padding":"5px 0","boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"red","borderRadius":"0","textAlign":"left","borderWidth":"0","width":"100%","lineHeight":"34px","fontSize":"18px","borderStyle":"solid"}' class="price">
+							<span :style='{"fontSize":"12px"}'  id="price"></span>
+						</span>
+					</div>
+
+
+					
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>电影类型：</span>
+						<span style="word-break: break-all" :style='{"padding":"5px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","textAlign":"left","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
+							<span :style='{"fontSize":"12px"}'  id="sort"></span>
+						</span>
+					</div>
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>导演：</span>
+						<span style="word-break: break-all" :style='{"padding":"5px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","textAlign":"left","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
+							<span :style='{"fontSize":"12px"}'  id="director"></span>
+						</span>
+					</div>
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>主演：</span>
+						<span style="word-break: break-all" :style='{"padding":"5px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","textAlign":"left","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
+							<span :style='{"fontSize":"12px"}'  id="role"></span>
+						</span>
+					</div>
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>上映日期：</span>
+						<span style="word-break: break-all" :style='{"padding":"5px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","textAlign":"left","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
+							<span :style='{"fontSize":"12px"}'  id="releaseDate"></span>
+						</span>
+					</div>
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>片长：</span>
+						<span style="word-break: break-all" :style='{"padding":"5px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","textAlign":"left","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
+							<span :style='{"fontSize":"12px"}'  id="length"></span>
+						</span>
+					</div>
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>场次：</span>
+						<span style="word-break: break-all" :style='{"padding":"5px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","textAlign":"left","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
+							<span :style='{"fontSize":"12px"}'  id="session"></span>
+						</span>
+					</div>
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>影厅号：</span>
+						<span style="word-break: break-all" :style='{"padding":"5px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","textAlign":"left","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
+							<span :style='{"fontSize":"12px"}'  id="no"></span>
+						</span>
+					</div>
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>电影院账号：</span>
+						<span style="word-break: break-all" :style='{"padding":"5px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","textAlign":"left","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
+							<span :style='{"fontSize":"12px"}'  id="cinemaAccount"></span>
+						</span>
+					</div>
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>电影院名称：</span>
+						<span style="word-break: break-all" :style='{"padding":"5px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","textAlign":"left","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
+							<span :style='{"fontSize":"12px"}'  id="cinemaName"></span>
+						</span>
+					</div>
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>座位总数：</span>
+						<span style="word-break: break-all" :style='{"padding":"5px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","textAlign":"left","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
+							<span :style='{"fontSize":"12px"}'  id="numberOfSeat"></span>
+						</span>
+					</div>
+
+					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="jsonObj-item">
+						<span :style='{"padding":"0 12px 0 0","minWidth":"94px","fontSize":"14px","color":"#333","textAlign":"right"}'>电影简介：</span>
+						<span style="word-break: break-all" :style='{"padding":"5px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","textAlign":"left","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
+							<span :style='{"fontSize":"12px"}'  id="description"></span>
+						</span>
+					</div>
+
+					<div>
+
+
+
+
+					<div class="jsonObj-item" :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' style="text-align: right;">
+
+						<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.3)","margin":"0 5px","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(255, 172, 83, 1)","color":"rgba(255, 255, 255, 1)","borderRadius":"4px","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' @click="bookClick" type="button" class="layui-btn btn-submit">
+							立即预订
+						</button>
+
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="data-jsonObj">
+
+			<div class="layui-row jsonObj-tab">
+				<div class="layui-tab layui-tab-card" :style='{"boxShadow":"0 0 6px rgba(67, 162, 205,.3)","borderColor":"rgba(67, 162, 205, 0.3)","backgroundColor":"#fff","borderRadius":"10px","borderStyle":"solid","borderWidth":"1px"}' style="overflow: hidden;">
+
+					<ul class="layui-tab-title" :style='{"color":"rgba(255, 255, 255, 1)","backgroundColor":"rgba(149, 221, 255, 1)","fontSize":"14px"}'>
+
+						<li>选座</li>
+
+
+					</ul>
+
+
+
+
+						<div class="layui-tab-item">
+							<div class="seat-list">
+								<div v-for="(item,index) in numberList " v-bind:key="index" class="seat-item">
+									<img @click="selectTip()" v-if="item.select" class="seat-icon" src="../images/select.png" />
+									<img @click="selectSeat(item)" v-else-if="!item.active" class="seat-icon" src="../images/unselect.png" />
+									<img @click="unselectSeat(item)" v-else class="seat-icon" src="../images/select.png" />
+									<span>{{item.name}}</span>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<table id="myTable"></table>
+
+
+
+
+
+
+
+
+		<label for="c">Choose col:</label>
+		<select id="c">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select>
+		<label for="r">Choose row:</label>
+		<select id="r">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+		</select>
+
+		<button onclick="choose()">选座</button>
+
+
+	</div>
+
+
+
+    <script src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	// 这是一个测试的数组
+	var seatArry = [
+		{
+			data:"001",
+			isSole:"0",
+			x:1,
+			y:1,
+			isSelect:"0"
+		},
+		{
+			data:"002",
+			isSole:"0",
+			x:1,
+			y:2,
+			isSelect:"0"
+		},
+		{
+			data:"003",
+			isSole:"0",
+			x:1,
+			y:3,
+			isSelect:"0"
+		},
+		{
+			data:"004",
+			isSole:"0",
+			x:1,
+			y:4,
+			isSelect:"0"
+		},
+		{
+			data:"005",
+			isSole:"0",
+			x:1,
+			y:5,
+			isSelect:"0"
+		},
+		{
+			data:"006",
+			isSole:"0",
+			x:1,
+			y:6,
+			isSelect:"0"
+		},
+		{
+			data:"007",
+			isSole:"0",
+			x:1,
+			y:7,
+			isSelect:"0"
+		},
+		{
+			data:"008",
+			isSole:"0",
+			x:1,
+			y:8,
+			isSelect:"0"
+		},
+		{
+			data:"009",
+			isSole:"0",
+			x:1,
+			y:9,
+			isSelect:"0"
+		},
+		{
+			data:"010",
+			isSole:"0",
+			x:1,
+			y:10,
+			isSelect:"0"
+		},
+		{
+			data:"011",
+			isSole:"0",
+			x:1,
+			y:11,
+			isSelect:"0"
+		},
+		{
+			data:"012",
+			isSole:"0",
+			x:1,
+			y:12,
+			isSelect:"0"
+		},
+		{
+			data:"013",
+			isSole:"0",
+			x:1,
+			y:13,
+			isSelect:"0"
+		},
+		{
+			data:"014",
+			isSole:"0",
+			x:1,
+			y:14,
+			isSelect:"0"
+		},
+		{
+			data:"015",
+			isSole:"0",
+			x:2,
+			y:1,
+			isSelect:"0"
+		},
+		{
+			data:"016",
+			isSole:"0",
+			x:2,
+			y:2,
+			isSelect:"0"
+		},
+		{
+			data:"017",
+			isSole:"0",
+			x:2,
+			y:3,
+			isSelect:"0"
+		},
+		{
+			data:"018",
+			isSole:"0",
+			x:2,
+			y:4,
+			isSelect:"0"
+		},
+		{
+			data:"019",
+			isSole:"0",
+			x:2,
+			y:5,
+			isSelect:"0"
+		},
+		{
+			data:"020",
+			isSole:"0",
+			x:2,
+			y:6,
+			isSelect:"0"
+		},
+		{
+			data:"021",
+			isSole:"0",
+			x:2,
+			y:7,
+			isSelect:"0"
+		},
+		{
+			data:"022",
+			isSole:"0",
+			x:2,
+			y:8,
+			isSelect:"0"
+		},
+		{
+			data:"023",
+			isSole:"0",
+			x:2,
+			y:9,
+			isSelect:"0"
+		},
+		{
+			data:"024",
+			isSole:"0",
+			x:2,
+			y:10,
+			isSelect:"0"
+		},
+		{
+			data:"025",
+			isSole:"0",
+			x:2,
+			y:11,
+			isSelect:"0"
+		},
+		{
+			data:"026",
+			isSole:"0",
+			x:2,
+			y:12,
+			isSelect:"0"
+		},
+		{
+			data:"027",
+			isSole:"0",
+			x:2,
+			y:13,
+			isSelect:"0"
+		},
+		{
+			data:"028",
+			isSole:"0",
+			x:2,
+			y:14,
+			isSelect:"0"
+		},
+		{
+			data:"029",
+			isSole:"0",
+			x:3,
+			y:1,
+			isSelect:"0"
+		},
+		{
+			data:"030",
+			isSole:"0",
+			x:3,
+			y:2,
+			isSelect:"0"
+		},
+		{
+			data:"031",
+			isSole:"0",
+			x:3,
+			y:3,
+			isSelect:"0"
+		},
+		{
+			data:"032",
+			isSole:"0",
+			x:3,
+			y:4,
+			isSelect:"0"
+		},
+		{
+			data:"033",
+			isSole:"0",
+			x:3,
+			y:5,
+			isSelect:"0"
+		},
+		{
+			data:"034",
+			isSole:"0",
+			x:3,
+			y:6,
+			isSelect:"0"
+		},
+		{
+			data:"035",
+			isSole:true,
+			x:3,
+			y:7,
+			isSelect:"0"
+		},
+		{
+			data:"036",
+			isSole:"0",
+			x:3,
+			y:8,
+			isSelect:"0"
+		},
+		{
+			data:"037",
+			isSole:"0",
+			x:3,
+			y:9,
+			isSelect:"0"
+		},
+		{
+			data:"038",
+			isSole:"0",
+			x:3,
+			y:10,
+			isSelect:"0"
+		},
+		{
+			data:"039",
+			isSole:"0",
+			x:3,
+			y:11,
+			isSelect:"0"
+		},
+		{
+			data:"040",
+			isSole:"0",
+			x:3,
+			y:12,
+			isSelect:"0"
+		},
+		{
+			data:"041",
+			isSole:"0",
+			x:3,
+			y:13,
+			isSelect:"0"
+		},
+		{
+			data:"042",
+			isSole:"0",
+			x:3,
+			y:14,
+			isSelect:"0"
+		},
+	]
+
+</script>
+	<script src="../../layui/layui.js"></script>
+	<script src="../../js/vue.js"></script>
+	<!-- 组件配置信息 -->
+	<script src="../../js/config.js"></script>
+	<!-- 扩展插件配置信息 -->
+	<script src="../../modules/config.js"></script>
+	<!-- 工具方法 -->
+	<script src="../../js/utils.js"></script>
+
+
+
+
+	<script type="text/javascript">
+
+		function choose() {
+			//获取 select 对象
+			var c = document.getElementById('c');
+			var r = document.getElementById('r');
+			//  获取选中项的索引：
+			var cid = c.selectedIndex;
+			var rid = r.selectedIndex;
+			// alert(cid+1);
+			// alert(rid+1);
+
+			var location = 5*(rid)+cid+1;
+			// alert(location);
+			var movieId=id+1;
+			// alert(movieId);
+			window.location.href="/dingdan/save/"+movieId+"/"+location;
+		}
+	</script>
+
+
+
+	<script>
+		var seatList = [];
+		var id;
+
+		window.addEventListener('load', loadSeat );
+		window.addEventListener('load',load);
+		function loadSeat(){
+			var mid= location.search.replace(/[^\d]/g, "")
+			// http://localhost:8070/movie/findById/1
+			var url = "/dingdan/findAllByMid/"+ mid; // 获取 JSON 数据的链接
+			// alert(id);
+			var request;
+
+			if (window.XMLHttpRequest) {
+				request = new XMLHttpRequest(); //发送 Ajax 请求，适用于 Chrome, mozilla 等浏览器
+			} else if (window.ActiveXObject) {
+				request = new ActiveXObject("Microsoft.XMLHTTP"); // 发送 Ajax 请求，适用于 IE 浏览器
+			}
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
+					// alert(request.responseText);
+					this.jsonObj = JSON.parse(request.responseText); // 解析 JSON 数据
+
+					//alert(typeof(request.responseText));
+					//alert(this.jsonObj.length);
+					for (let i = 0; i < this.jsonObj.length; i++) {
+
+						for (var key in this.jsonObj[i]) {
+							if (this.jsonObj[i].hasOwnProperty(key)) {
+								console.log(key + ": " + this.jsonObj[i][key]);
+							}
+						}
+					}
+
+					seatList=[];
+					let newArr = this.jsonObj.map(item=>item.address);
+					seatList = [...new Set(seatList)];
+					seatList = newArr.join(',') //角色1，角色2，角色3
+
+					// alert(typeof(newArr));
+					// alert(seatList);
+					// alert(typeof(seatList));
+
+					var list = []
+					for (let i = 0; i < newArr.length; i++) {
+						if (list.indexOf(newArr[i]) === -1) {
+							list.push(newArr[i])
+						}
+					}
+					alert(list);
+
+
+					// Create a new table element
+					var table = document.getElementById("myTable");
+					// Add 3 rows to the table
+					for (var i = 0; i < 4; i++) {
+						var row = table.insertRow();
+
+						// Add 3 cells to each row
+						for (var j = 0; j < 5; j++) {
+							var cell = row.insertCell();
+
+							// Create an image element and set its src attribute
+							var img = document.createElement("img");
+
+							// 检查当前数是否在已选座位号数组中
+							img.src = "../../images/unselect.png" ;
+							if (list.indexOf(i*5+j+1) !== -1) {
+								img.src = "../../images/noselect.png" ;
+							} else {
+								img.src = "../../images/unselect.png" ;
+							}
+
+							// Add the image to the cell
+							cell.appendChild(img);
+						}
+					}
+
+					// 绑定事件
+					table.addEventListener("click", function(event) {
+						// 当用户点击表格中的单元格时，会触发该事件
+						var cell = event.target;
+						var img = document.createElement("img");
+						img.src = "../../images/selected.png";
+						cell.appendChild(img);
+						// 在这里，你可以处理点击事件，例如弹出消息框
+						alert("You clicked on cell ");
+					});
+
+
+
+
+					//alert(typeof(this.jsonObj));
+					//三个问题
+					//如何用一个结构存放这些数据
+					//如何固定在一些位置展示
+					//如何将用户点击一一存入订单
+				}
+			}
+			request.open("GET", url, true);
+			request.send();
+		}
+
+
+		function load() {
+			id= location.search.replace(/[^\d]/g, "")
+			id = id - 1;
+			// http://localhost:8070/movie/findById/1
+			var url = "/movie/findByIdJson/"+ id; // 获取 JSON 数据的链接
+			// alert(id);
+			var request;
+
+			if (window.XMLHttpRequest) {
+				request = new XMLHttpRequest(); //发送 Ajax 请求，适用于 Chrome, mozilla 等浏览器
+			} else if (window.ActiveXObject) {
+				request = new ActiveXObject("Microsoft.XMLHTTP"); // 发送 Ajax 请求，适用于 IE 浏览器
+			}
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
+					// alert(request.responseText)
+					this.jsonObj = JSON.parse(request.responseText); // 解析 JSON 数据
+					document.getElementById("sort").innerHTML     = this.jsonObj.sort;
+					document.getElementById("price").innerHTML     = this.jsonObj.price;
+					document.getElementById("director").innerHTML   = this.jsonObj.director;
+					document.getElementById("role").innerHTML     = this.jsonObj.role;
+					document.getElementById("releaseDate").innerHTML     = this.jsonObj.releaseDate;
+					document.getElementById("session").innerHTML     = this.jsonObj.session;
+					document.getElementById("length").innerHTML     = this.jsonObj.length;
+					document.getElementById("no").innerHTML     = this.jsonObj.no;
+					document.getElementById("sort").innerHTML     = this.jsonObj.sort;
+					document.getElementById("cinemaAccount").innerHTML     = this.jsonObj.cinemaAccount;
+					document.getElementById("cinemaName").innerHTML     = this.jsonObj.cinemaName;
+					document.getElementById("numberOfSeat").innerHTML     = this.jsonObj.numberOfSeat;
+					document.getElementById("description").innerHTML     = this.jsonObj.description;
+
+					// document.getElementById("selected").innerHTML     = this.jsonObj.selected;
+					var number = this.jsonObj.numberOfSeat;
+					var selected = this.jsonObj.selected;
+					// alert(number);
+					numberofSeat = this.jsonObj.numberOfSeat;
+					console.log(this.jsonObj);
+
+
+				}
+			}
+			request.open("GET", url, true);
+			request.send();
+		}
+	</script>
+
+
+
+	<script>
+		var vue = new Vue({
+			el: '#app',
+			data: {
+				// 轮播图
+				swiperList: [],
+				// 数据详情
+				jsonObj: {
+					id: 0
+				},
+				// 商品标题
+				title: '',
+				// 倒计时
+				count: 0,
+				// 加入购物车数量
+				buynumber: 1,
+				// 当前详情页表
+				jsonObjTable: 'dianyingxinxi',
+				baseurl: '',
+				// 评论列表
+				dataList: [],
+				storeupFlag: 0,
+				thumbsupFlag: 0,
+				crazilyFlag: 0,
+				// 选座座位列表
+				numberList: []
+			},
+			//  清除定时器
+			destroyed: function() {
+				window.clearInterval(this.inter);
+			},
+			methods: {
+				jump(url) {
+					jump(url)
+				},
+				isAuth(tablename, button) {
+					return isFrontAuth(tablename, button)
+				},
+
+
+
+				selectSeat(item) {
+					item.active = true;
+				},
+				// 取消选择座位
+				unselectSeat(item) {
+					item.active = false;
+				},
+				// 提示该座位已经被选择了
+				selectTip() {
+					layer.msg(`该座位已被预定`, {
+						time: 2000,
+						icon: 5
+					});
+				},
+				// 请求预定接口
+				bookClick() {
+					let activeSeat = [];
+					for(let i=0;i<this.numberList.length;i++){
+						if(this.numberList[i].active){
+							activeSeat.push(this.numberList[i].name.replace('号',''));
+						}
+					}
+					layui.layer.confirm('是否确认预定？', {
+						btn: ['预定', '取消'] //按钮
+					}, () => {
+						if (activeSeat.length==0) {
+							layer.msg(`请选择要预定的位置`, {
+								time: 2000,
+								icon: 5
+							});
+							return
+						}
+						let data = {
+							orderid: genTradeNo(),
+							tablename: this.jsonObjTable,
+							userid: localStorage.getItem('userid'),
+							goodid: this.jsonObj.id,
+							goodname: this.title,
+                            dianyingyuanzhanghao: this.jsonObj.dianyingyuanzhanghao,
+							picture:vue.jsonObj.haibao,
+							buynumber: activeSeat.length,
+							discountprice: 0,
+							total: 0,
+							discounttotal: 0,
+							type: 1,
+							address: activeSeat.join(','),
+							activeSeat: activeSeat.join(','),
+							status: '已支付',
+							tablename: this.jsonObjTable,
+							discountprice: this.jsonObj.vipprice
+						}
+						if (this.jsonObj.price) {
+							data['status'] = '未支付'
+							data['price'] = this.jsonObj.price
+							data['total'] = parseFloat(data['price'] * activeSeat.length).toFixed(2)
+							localStorage.setItem('orderGoods', JSON.stringify([data]));
+							jump('../shop-order/confirm.html?seat=1');
+						} else {
+                                                        let oldSelectedArray = this.jsonObj.selected.split(",");
+                                                        // 新的预定座位号
+                                                        let newSelectArray = oldSelectedArray.concat(activeSeat);
+                                                        // 赋值给参数
+                                                        this.jsonObj.selected = newSelectArray.join(',');
+							data['price'] = 0
+							layui.http.requestJson(`orders/add`, 'post', data, (res) => {
+								// 修改数据被选中座位信息
+								layui.http.requestJson(`${this.jsonObjTable}/update`, 'post', this.jsonObj, (res) => {
+									layer.msg(`预定成功`, {
+										time: 2000,
+										icon: 6
+									});
+								});
+							})
+						}
+					});
+				}
+
+			}
+		})
+
+		</script>
+	</body>
+</html>

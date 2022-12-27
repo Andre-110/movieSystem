@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta content="text/html; charset=utf-8">
+  <title>AJAX And JSON</title>
+  <script type="application/javascript">
+    function load() {
+      // http://localhost:8070/movie/findById/1
+      var url = "/movie/findByIdJson/1"; // 获取 JSON 数据的链接
+      var request;
+
+      if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest(); //发送 Ajax 请求，适用于 Chrome, mozilla 等浏览器
+      } else if (window.ActiveXObject) {
+        request = new ActiveXObject("Microsoft.XMLHTTP"); // 发送 Ajax 请求，适用于 IE 浏览器
+      }
+      request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+          var jsonObj = JSON.parse(request.responseText); // 解析 JSON 数据
+          document.getElementById("sort").innerHTML     = jsonObj.sort;
+        }
+      }
+      request.open("GET", url, true);
+      request.send();
+    }
+  </script>
+</head>
+<body>
+种类: <span id="sort"></span><br />
+<button type="button" onclick="load()">点击加载 JSON 数据</button>
+</body>
+</html>

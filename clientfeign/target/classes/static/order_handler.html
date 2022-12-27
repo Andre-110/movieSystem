@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+</head>
+<body>
+<div class="layui-container" style="width: 960px;height: 600px;margin-top: 0px;padding-top: 60px;">
+
+    <div style="margin-left: 460px; width: 300px;">
+        <a href="/menu/redirect/buy">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;<button class="layui-btn layui-btn-warm layui-btn-radius">退出</button></a>
+    </div>
+
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="update">删除</a>
+    </script>
+    <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+    <script>
+        layui.use('table', function(){
+            var table = layui.table;
+
+            table.render({
+                elem: '#test'
+                ,url:'/dingdan/findAllByUid'
+                ,title: '订单列表'
+                ,cols: [
+                    [
+                        {field:'id', width:100, title: '编号', sort: true}
+                        , {
+                        field: 'name', width: 200, title: '电影名称', templet: function (data) {
+                            return data.movie.movieName
+                        }
+                    }
+                        , {
+                        field: 'price', width: 100, title: '价格', templet: function (data) {
+                            return data.movie.price
+                        }
+                    }
+                        ,{field:'seat', width:100, title: '座位',templet:function(data){
+                            return data.address
+                        }
+                    }
+                        ,{field:'addtime', width:100, title: '下单时间',templet:function(data){
+                            return data.addtime
+                        }
+                    }
+                        ,{field:'state', width:100, title: '支付状态',templet:function(data){
+                            var result = "";
+                            switch (data.status) {
+                                case 0:
+                                    result = "未支付";
+                                    break;
+                                case 1:
+                                    result = "已支付";
+                                    break;
+                            }
+                            return result
+                        }
+                    }
+
+                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:140}
+
+                    ]
+                ]
+                ,page: true
+            });
+
+            //监听行工具事件
+            table.on('tool(test)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'order'){
+                    window.location.href="/order/save/"+data.id;
+                }
+            });
+        });
+    </script>
+
+</div>
+<script>
+    //二级菜单联动
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>
